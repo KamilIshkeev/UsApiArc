@@ -33,6 +33,20 @@ namespace UsApi.Services
             return true;
         }
 
+        public async Task<bool> UpdateUserAsync(User user)
+        {
+            var existingUser = await _context.User.FindAsync(user.Id);
+            if (existingUser == null)
+                return false;
+
+            existingUser.Login = user.Login;
+            existingUser.Password = user.Login;
+            existingUser.Money = user.Money;
+            existingUser.Ball_id = user.Ball_id;
+
+            await _context.SaveChangesAsync();
+            return true;
+        }
 
 
         public async Task<bool> DeleteUserAsync(int id)
@@ -46,9 +60,9 @@ namespace UsApi.Services
             return true;
         }
 
-        public async Task<User> AuthenticateAsync(string login, string password)
+        public async Task<User> AuthenticateAsync(string Login, string Password)
         {
-            var user = await _context.User.FirstOrDefaultAsync(u => u.Login == login && u.Password == password);
+            var user = await _context.User.FirstOrDefaultAsync(u => u.Login == Login && u.Password == Password);
             return user;
         }
 

@@ -18,7 +18,8 @@ namespace UsApi.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Login = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Money = table.Column<int>(type: "int", nullable: false)
+                    Money = table.Column<int>(type: "int", nullable: false),
+                    Ball_id = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

@@ -10,5 +10,6 @@ namespace UsApi.Interfaces
         
         Task<bool> DeleteUserAsync(int id);
         Task<User> AuthenticateAsync(string email, string password);
+        Task<bool> UpdateUserAsync(User user);
     }
 }

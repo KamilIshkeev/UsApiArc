@@ -45,7 +45,18 @@ namespace UsApi.Controllers
             return Ok();
         }
 
-        
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateUser(int id, User user)
+        {
+            if (id != user.Id)
+                return BadRequest();
+
+            var result = await _userService.UpdateUserAsync(user);
+            if (!result)
+                return NotFound();
+
+            return Ok();
+        }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
@@ -58,7 +69,7 @@ namespace UsApi.Controllers
         }
 
         [HttpPost("authentication")]
-        public async Task<IActionResult> Authenticate(string login, string password)
+        public async Task<IActionResult> Authenticate(string Login, string Password)
         {
             
             if (!ModelState.IsValid)
@@ -67,7 +78,7 @@ namespace UsApi.Controllers
             }
 
             //var authenticatedUser = await _userService.AuthenticateAsync(loginRequest., loginRequest.Password);
-            var user1 = await _userService.AuthenticateAsync(login, password);
+            var user1 = await _userService.AuthenticateAsync(Login, Password);
             if (user1 == null)
             {
                 return Unauthorized();

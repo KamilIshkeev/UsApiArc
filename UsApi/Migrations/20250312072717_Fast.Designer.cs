@@ -11,7 +11,7 @@ using UsApi.UDbContext;
 namespace UsApi.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20250310120107_Fast")]
+    [Migration("20250312072717_Fast")]
     partial class Fast
     {
         /// <inheritdoc />
@@ -31,6 +31,9 @@ namespace UsApi.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Ball_id")
+                        .HasColumnType("int");
 
                     b.Property<string>("Login")
                         .IsRequired()
