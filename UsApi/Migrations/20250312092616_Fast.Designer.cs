@@ -11,8 +11,8 @@ using UsApi.UDbContext;
 namespace UsApi.Migrations
 {
     [DbContext(typeof(UserDbContext))]
-    [Migration("20250312073527_Fist")]
-    partial class Fist
+    [Migration("20250312092616_Fast")]
+    partial class Fast
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -55,14 +55,14 @@ namespace UsApi.Migrations
                     b.Property<int>("BallId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Ball_id")
+                    b.Property<int?>("Ball_id")
                         .HasColumnType("int");
 
                     b.Property<string>("Login")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Money")
+                    b.Property<int?>("Money")
                         .HasColumnType("int");
 
                     b.Property<string>("Password")

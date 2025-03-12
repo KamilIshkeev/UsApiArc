@@ -52,14 +52,14 @@ namespace UsApi.Migrations
                     b.Property<int>("BallId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Ball_id")
+                    b.Property<int?>("Ball_id")
                         .HasColumnType("int");
 
                     b.Property<string>("Login")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Money")
+                    b.Property<int?>("Money")
                         .HasColumnType("int");
 
                     b.Property<string>("Password")

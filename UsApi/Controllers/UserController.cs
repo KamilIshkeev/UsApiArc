@@ -69,22 +69,30 @@ namespace UsApi.Controllers
         }
 
         [HttpPost("authentication")]
-        public async Task<IActionResult> Authenticate(string Login, string Password)
+        public async Task<IActionResult> Authenticate([FromBody] AuthRequest request)
         {
-            
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                return BadRequest("Некорректные данные");
             }
 
-            //var authenticatedUser = await _userService.AuthenticateAsync(loginRequest., loginRequest.Password);
-            var user1 = await _userService.AuthenticateAsync(Login, Password);
-            if (user1 == null)
+            var user = await _userService.AuthenticateAsync(request.Login, request.Password);
+            if (user == null)
             {
                 return Unauthorized();
             }
 
-            return Ok(user1);
+            return Ok(user);
         }
+
+        // Создайте класс для входных данных
+        public class AuthRequest
+        {
+            public string Login { get; set; }
+            public string Password { get; set; }
+        }
+
+
+       
     }
 }

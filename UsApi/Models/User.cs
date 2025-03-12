@@ -8,8 +8,8 @@ namespace UsApi.Models
         public int Id { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
-        public int Money { get; set; }
-        public int Ball_id { get; set; }
+        public int? Money { get; set; }
+        public int? Ball_id { get; set; }
         //public Ball Ball { get; set; }
 
     }
