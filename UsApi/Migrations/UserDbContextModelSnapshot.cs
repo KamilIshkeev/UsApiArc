@@ -21,6 +21,26 @@ namespace UsApi.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("UsApi.Models.Ball", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Price")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Ball");
+                });
+
             modelBuilder.Entity("UsApi.Models.User", b =>
                 {
                     b.Property<int>("Id")
@@ -28,6 +48,9 @@ namespace UsApi.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("BallId")
+                        .HasColumnType("int");
 
                     b.Property<int>("Ball_id")
                         .HasColumnType("int");
@@ -45,7 +68,20 @@ namespace UsApi.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("BallId");
+
                     b.ToTable("User");
+                });
+
+            modelBuilder.Entity("UsApi.Models.User", b =>
+                {
+                    b.HasOne("UsApi.Models.Ball", "Ball")
+                        .WithMany()
+                        .HasForeignKey("BallId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Ball");
                 });
 #pragma warning restore 612, 618
         }
