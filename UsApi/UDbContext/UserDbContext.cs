@@ -14,5 +14,6 @@ namespace UsApi.UDbContext
         }
 
         public DbSet<User> User { get; set; }
+        public DbSet<Ball> Ball { get; set; }
     }
 }
