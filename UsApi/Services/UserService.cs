@@ -39,8 +39,8 @@ namespace UsApi.Services
             if (existingUser == null)
                 return false;
 
-            existingUser.Login = user.Login;
-            existingUser.Password = user.Login;
+            existingUser.Login = existingUser.Login;
+            existingUser.Password = existingUser.Password;
             existingUser.Money = user.Money;
             existingUser.Ball_id = user.Ball_id;
 

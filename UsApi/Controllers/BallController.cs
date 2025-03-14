@@ -29,15 +29,27 @@ namespace UsApi.Controllers
         {
             return await _context.Ball.ToListAsync();
         }
-        //[HttpPost]
-        //public async Task<IActionResult> CreateUser(User user)
-        //{
-        //    var result = await _userService.CreateUserAsync(user);
-        //    if (!result)
-        //        return BadRequest("Email already exists");
+        [HttpGet("Hist/{id}")]
+        public async Task<List<HistoryBall>> GetAllHistory(int id)
+        {
+            
+            return await _context.HistoryBall.Where(u=> u.User_id == id).ToListAsync();
+        }
 
-        //    return Ok();
-        //}
+        [HttpPost("Hist")]
+        public async Task<IActionResult> CreateUser(HistoryBall historyBall)
+        {
+            if (await _context.HistoryBall.AnyAsync(u => u.Id == historyBall.Id))
+            { 
+                return BadRequest();
+            }
+            else 
+            { 
+            _context.HistoryBall.Add(historyBall);
+            await _context.SaveChangesAsync();
+            return Ok();
+            }
+        }
 
         //[HttpPut("{id}")]
         //public async Task<IActionResult> UpdateUser(int id, User user)

@@ -41,7 +41,7 @@ namespace UsApi.Migrations
                     b.ToTable("Ball");
                 });
 
-            modelBuilder.Entity("UsApi.Models.User", b =>
+            modelBuilder.Entity("UsApi.Models.HistoryBall", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -49,8 +49,24 @@ namespace UsApi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("BallId")
+                    b.Property<int?>("Ball_id")
                         .HasColumnType("int");
+
+                    b.Property<int?>("User_id")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("HistoryBall");
+                });
+
+            modelBuilder.Entity("UsApi.Models.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int?>("Ball_id")
                         .HasColumnType("int");
@@ -68,20 +84,7 @@ namespace UsApi.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("BallId");
-
                     b.ToTable("User");
-                });
-
-            modelBuilder.Entity("UsApi.Models.User", b =>
-                {
-                    b.HasOne("UsApi.Models.Ball", "Ball")
-                        .WithMany()
-                        .HasForeignKey("BallId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Ball");
                 });
 #pragma warning restore 612, 618
         }
