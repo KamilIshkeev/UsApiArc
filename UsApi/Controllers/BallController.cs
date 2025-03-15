@@ -51,6 +51,19 @@ namespace UsApi.Controllers
             }
         }
 
+        [HttpGet("Hist")]
+        public async Task<IActionResult> GetAllHist()
+        {
+            var historyBalls = await _context.HistoryBall.ToListAsync();
+            return Ok(new { items = historyBalls });
+        }
+
+        //[HttpGet("Hist")]
+        //public async Task<List<HistoryBall>> GetAllHist()
+        //{
+        //    return await _context.HistoryBall.ToListAsync();
+        //}
+
         //[HttpPut("{id}")]
         //public async Task<IActionResult> UpdateUser(int id, User user)
         //{
